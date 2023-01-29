@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Key Smash &#8212; trabalho-gces-erick-levy-barbosa-dos-santos  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Word Embedding" href="word_embedding.html" />
+    <link rel="prev" title="Data pipeline" href="modules_data_pipeline.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-data_pipeline.feature_engineering.key_smash">
+<span id="key-smash"></span><h1>Key Smash<a class="headerlink" href="#module-data_pipeline.feature_engineering.key_smash" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="data_pipeline.feature_engineering.key_smash.KeySmash">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_pipeline.feature_engineering.key_smash.</span></span><span class="sig-name descname"><span class="pre">KeySmash</span></span><a class="reference internal" href="_modules/data_pipeline/feature_engineering/key_smash.html#KeySmash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_pipeline.feature_engineering.key_smash.KeySmash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for calculating metrics to indicate key smashing behavior in a text.</p>
+<p>Key smashing is the act of typing on a keyboard in a rapid and uncontrolled manner,
+often resulting in a series of random characters being entered into a document or text field.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="data_pipeline.feature_engineering.key_smash.KeySmash.calculate_char_frequency_metric">
+<span class="sig-name descname"><span class="pre">calculate_char_frequency_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_pipeline/feature_engineering/key_smash.html#KeySmash.calculate_char_frequency_metric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_pipeline.feature_engineering.key_smash.KeySmash.calculate_char_frequency_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Char Frequency Metric.</p>
+<dl class="simple">
+<dt>text<span class="classifier">str</span></dt><dd><p>The text to use for the calculation.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>float</dt><dd><p>Char Frequency Metric.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_char_frequency_metric</span><span class="p">(</span><span class="s2">&quot;PUENTECILLA KM. 1.7&quot;</span><span class="p">)</span>
+<span class="go">1.121212121212121</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_char_frequency_metric</span><span class="p">(</span><span class="s2">&quot;ASDASD XXXX&quot;</span><span class="p">)</span>
+<span class="go">3.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_pipeline.feature_engineering.key_smash.KeySmash.calculate_irregular_sequence_metric">
+<span class="sig-name descname"><span class="pre">calculate_irregular_sequence_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_pipeline/feature_engineering/key_smash.html#KeySmash.calculate_irregular_sequence_metric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_pipeline.feature_engineering.key_smash.KeySmash.calculate_irregular_sequence_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Irregular Sequence Metric.</p>
+<dl class="simple">
+<dt>text<span class="classifier">str</span></dt><dd><p>The text to use for the calculation.</p>
+</dd>
+<dt>opt<span class="classifier">str</span></dt><dd><p>The type of characters to consider for the calculation,
+can be one of ‘vowels’, ‘consonants’, or ‘special_characters’.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>float</dt><dd><p>Irregular Sequence Metric.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_irregular_sequence_metric</span><span class="p">(</span><span class="s2">&quot;PUENTECILLA KM. 1.7&quot;</span><span class="p">,</span> <span class="s2">&quot;vowels&quot;</span><span class="p">)</span>
+<span class="go">0.21052631578947367</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_irregular_sequence_metric</span><span class="p">(</span><span class="s2">&quot;ASDASD XXXX&quot;</span><span class="p">,</span> <span class="s2">&quot;consonants&quot;</span><span class="p">)</span>
+<span class="go">2.1818181818181817</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_irregular_sequence_metric</span><span class="p">(</span><span class="s2">&quot;!@#$% ASDFGHJKL&quot;</span><span class="p">,</span> <span class="s2">&quot;special_characters&quot;</span><span class="p">)</span>
+<span class="go">1.5625</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_pipeline.feature_engineering.key_smash.KeySmash.calculate_number_count_metric">
+<span class="sig-name descname"><span class="pre">calculate_number_count_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_pipeline/feature_engineering/key_smash.html#KeySmash.calculate_number_count_metric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#data_pipeline.feature_engineering.key_smash.KeySmash.calculate_number_count_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Number Count Metric.</p>
+<dl class="simple">
+<dt>text<span class="classifier">str</span></dt><dd><p>The text field to use for the calculation.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>float</dt><dd><p>Number Count Metric.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_number_count_metric</span><span class="p">(</span><span class="s2">&quot;ABC 123 !@#&quot;</span><span class="p">)</span>
+<span class="go">0.0 </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_number_count_metric</span><span class="p">(</span><span class="s2">&quot;ABC123 !@#&quot;</span><span class="p">)</span>
+<span class="go">0.9</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">trabalho-gces-erick-levy-barbosa-dos-santos</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules_data_pipeline.html">Data pipeline</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Key Smash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="word_embedding.html">Word Embedding</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules_parser.html">Parser modules</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules_data_pipeline.html">Data pipeline</a><ul>
+      <li>Previous: <a href="modules_data_pipeline.html" title="previous chapter">Data pipeline</a></li>
+      <li>Next: <a href="word_embedding.html" title="next chapter">Word Embedding</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Erick Levy Barbosa dos Santos.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/key_smash.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
