@@ -12,20 +12,11 @@ services:
     - MONGO_INITDB_ROOT_PASSWORD=lappis
 
   metabase:
-    image: metabase/metabase
+    build: .
     ports:
       - 3000:3000
-    environment:
-      - MB_DB_TYPE=postgres
-      - MB_DB_DBNAME=lappis
-      - MB_DB_PORT=5432
-      - MB_DB_USER=lappis
-      - MB_DB_PASS=lappis
-      - MB_DB_HOST=postgres
     depends_on:
-      - postgres
-    links:
-      - postgres
+      - library-db
   
   postgres:
     container_name: lappis-postgres
@@ -36,7 +27,6 @@ services:
     environment:
       POSTGRES_USER: lappis
       POSTGRES_PASSWORD: lappis
-      METABASE_PASSWORD: lappis
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
 volumes:
