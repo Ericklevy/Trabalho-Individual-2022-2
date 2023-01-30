@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: verificando os arquivos na master
-      uses: action/checkout@v2
+      uses: actions/checkout@v2
     - name: inserindo e verificando a variante para o funcionamento do projeto
       uses: actions/setup-python@v2
       with:
@@ -27,8 +27,12 @@ jobs:
         pip install pylint
         pylint src
     continue-on-error: true
-    
-
+    - name: utilizando o Sphinx para gerar documentação
+      run: sphinx-build -b html docs/ docs/build/
+    - name: publicando na pypi
+      run |
+        poetry config pypi-token.pypi ${{ secrets.TOKEN}}
+        poetry publish --username __token__ -v
 
 
       
