@@ -1,0 +1,17 @@
+name: DEPLOY CI
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: 
+  push:
+    branches:
+      - master
+      - ci-teste
+
+job:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: verificando os arquivos na master
+      uses: action/checkout@v2
+    - name: inserirando e verificando a versão para o funcionamento do projeto
+      uses: actions/setup-python@v2
+      
