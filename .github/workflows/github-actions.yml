@@ -5,18 +5,31 @@ on:
     branches:
       - master
 
+name: CI/CD
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Cópiando dados da master
+      uses: actions/checkout@v2    
+
 jobs:
   build:
     runs-on: ubuntu-latest 
     steps:
     - name: verificando os arquivos na master
       uses: actions/checkout@v2
+
     - name: inserindo e verificando a variante para o funcionamento do projeto
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
+
     - name: instalando a biblioteca poetry
       run: python -m pip install poetry
+
     - name: instalando a biblioteca que cria documentos sphinx
       run: sudo apt install --allow-unauthenticated python3-sphinx -y
     - name: instalando as dependencias do projeto com o poetry
@@ -36,5 +49,4 @@ jobs:
         poetry publish --username __token__ -v
 
 
-      
 
