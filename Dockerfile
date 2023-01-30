@@ -10,13 +10,23 @@ ENV YOUR_ENV=${YOUR_ENV} \
   PIP_DEFAULT_TIMEOUT=100 \
   POETRY_VERSION=1.3.2
 
-WORKDIR /app
-COPY ./requirements.txt /requirements.txt
-COPY poetry.lock pyproject.toml /app/
 
 RUN pip install "poetry==$POETRY_VERSION"
+
+WORKDIR /app
+COPY poetry.lock pyproject.toml /app/
+
+
 RUN poetry config virtualenvs.create false \
   && poetry install --no-dev --no-interaction --no-ansi
+  
+RUN apt update -y
+RUN apt-get install python3-sphinx -y
+RUN apt-get install doxygen sphinx-common -y
+
+RUN doxygen doxygen.conf -y
+RUN sphinx-build -b html docs/source docs/build
+
 
 COPY . .
 CMD ["python", "src/main.py"]
