@@ -1,6 +1,13 @@
 version: '3.5'
 
 services:
+  poetry:
+    container_name: poetry-container-command
+    build: .
+    command: bash -c "poetry config virtualenvs.create false && poetry config pypi-token.pypi ${token} && poetry version ${version} && poetry build && poetry publish"
+    depends_on:
+      - library-db
+
   library-db:
     container_name: lappis-mongo
     image: mongo:4.0.3

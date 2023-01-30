@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "trabalho-final-gces-erick-levy"
-version = "0.1.0"
+version = "0.1.2"
 description = "Trabalho final da materia gces"
 authors = ["Erick levy barbosa dos santos"]
 readme = "README.md"
@@ -55,6 +55,7 @@ tqdm="==4.64.1"
 urllib3="==1.26.13"
 whatlies="==0.7.0"
 zipp="==3.11.0"
+cython="==0.29.14"
 
 
 
